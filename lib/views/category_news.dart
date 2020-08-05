@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'package:dailynews/healper/news.dart';
+import 'package:dailynews/healper/shimmer_Effect.dart';
 import 'package:dailynews/models/ArticleModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,10 +26,15 @@ class _CategoryNewsState extends State<CategoryNews> {
     CategoryNewsClass newsClass=CategoryNewsClass();
     await newsClass.getNews(widget.category);
     articles=newsClass.news;
-    setState(() {
-      isLoding=false;
+    Timer timer=Timer(Duration(seconds: 1),(){
+      setState(() {
+        isLoding=false;
+      });
+
     });
+
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -51,13 +58,13 @@ class _CategoryNewsState extends State<CategoryNews> {
           ),
         ],
       ),
-      body:isLoding?Center(child: Container(child: CircularProgressIndicator())) :SingleChildScrollView(
+      body:isLoding?ShimmerList() :SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: <Widget>[
               Container(
-                padding: EdgeInsets.only(top:16),
+                padding:EdgeInsets.only(top:16),
                 child: ListView.builder(
                   physics:ClampingScrollPhysics() ,
                   shrinkWrap: true,

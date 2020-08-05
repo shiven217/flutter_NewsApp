@@ -1,6 +1,8 @@
+import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dailynews/healper/data.dart';
 import 'package:dailynews/healper/news.dart';
+import 'package:dailynews/healper/shimmer_Effect.dart';
 import 'package:dailynews/models/ArticleModel.dart';
 import 'package:dailynews/models/CategoryModel.dart';
 import 'package:dailynews/views/article_view.dart';
@@ -19,7 +21,6 @@ class _HomeState extends State<Home> {
   bool isLoding=true;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     categories=getCategories();
     getNews();
@@ -28,8 +29,11 @@ class _HomeState extends State<Home> {
     News newsClass=News();
     await newsClass.getNews();
     articles=newsClass.news;
-    setState(() {
-      isLoding=false;
+    Timer timer=Timer(Duration(seconds: 1),(){
+      setState(() {
+        isLoding=false;
+      });
+
     });
 
   }
@@ -49,7 +53,7 @@ class _HomeState extends State<Home> {
         centerTitle: true,
         elevation: 0.0,
       ),
-      body:isLoding?Center(child: Container(child: CircularProgressIndicator())) :SingleChildScrollView(
+      body:isLoding?ShimmerList() : SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 16),
           child: Column(
