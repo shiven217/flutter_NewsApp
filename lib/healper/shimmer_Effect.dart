@@ -34,8 +34,8 @@ class Shimmerlist extends StatelessWidget {
 class ShimmerLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    double ContainerWidth=250;
-    double ContainerHeigth=15;
+    double ContainerWidth=200;
+    double ContainerHeigth=10;
       return Container(
         margin: EdgeInsets.symmetric(vertical: 7.5),
         child: Row(
@@ -59,12 +59,11 @@ class ShimmerLayout extends StatelessWidget {
                   color: Color(0xFF0A0E21),
 
                 ),
-                SizedBox(height: 5,),
+                SizedBox(height: 5),
                 Container(
                   height: ContainerHeigth,
                   width: ContainerWidth*0.75,
                   color: Color(0xFF0A0E21),
-
                 ),
 
               ],

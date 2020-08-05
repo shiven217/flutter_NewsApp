@@ -29,13 +29,11 @@ class _HomeState extends State<Home> {
     News newsClass=News();
     await newsClass.getNews();
     articles=newsClass.news;
-    Timer timer=Timer(Duration(seconds: 1),(){
+    Timer timer=Timer(Duration(seconds: 2),(){
       setState(() {
         isLoding=false;
       });
-
     });
-
   }
 
   @override

@@ -18,7 +18,7 @@ class _CategoryNewsState extends State<CategoryNews> {
   bool isLoding=true;
   @override
   void initState() {
-    // TODO: implement initState
+
     super.initState();
     getCategoryNews();
   }
@@ -26,12 +26,14 @@ class _CategoryNewsState extends State<CategoryNews> {
     CategoryNewsClass newsClass=CategoryNewsClass();
     await newsClass.getNews(widget.category);
     articles=newsClass.news;
-    Timer timer=Timer(Duration(seconds: 1),(){
+    Timer timer=Timer(Duration(seconds: 2),(){
       setState(() {
         isLoding=false;
       });
 
     });
+
+
 
   }
 
